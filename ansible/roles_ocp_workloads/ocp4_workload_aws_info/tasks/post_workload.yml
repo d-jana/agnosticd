@@ -6,9 +6,8 @@
     aws_secret_access_key = {{ hostvars.localhost.route53user_secret_access_key }}
 
 - name: Debug Localhost value
-  tasks:
-  - debug:
-      msg: "Localhost: {{ hostvars.localhost }}"
+  debug:
+    msg: "Localhost: {{ hostvars.localhost }}"
 
 - name: Print AWS credentials
   when:
