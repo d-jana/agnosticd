@@ -372,6 +372,11 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: "{{ email | default('student') }}-{{ guid }}"
+      {% if sandbox_enable_ui | default(true) | bool %}
+      LoginProfile:
+        Password: {{ student_console_password | to_json }}
+        PasswordResetRequired: False
+      {% endif %}
       Policies:
         - PolicyName: AccessAll
           PolicyDocument:
