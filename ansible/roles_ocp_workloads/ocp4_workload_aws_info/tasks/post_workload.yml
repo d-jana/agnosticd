@@ -4,6 +4,9 @@
   set_fact:
     aws_access_key_id = {{ hostvars.localhost.route53user_access_key }}
     aws_secret_access_key = {{ hostvars.localhost.route53user_secret_access_key }}
+    aws_user_id = {{ hostvars.localhost.ec2_facts.instances.network_interfaces.owner_id }}
+    aws_user = {{ hostvars.localhost.cloud_tags_final.owner }}
+    student_password = {{ student_console_password | default("student_console_password") }}
 
 - name: Print AWS credentials
   when:
@@ -26,11 +29,11 @@
     - ""
     - >-
         {% if sandbox_enable_ui | default(true) | bool %}
-        Web Console Access: https://{{ hostvars.localhost.ec2_facts.instances.network_interfaces.owner_id }}.signin.aws.amazon.com/console
+        Web Console Access: https://{{ aws_user_id }}.signin.aws.amazon.com/console
         {% endif %}
     - >-
         {% if sandbox_enable_ui | default(true) | bool %}
-        Web Console Credentials: {{ hostvars.localhost.cloud_tags_final.owner }} / {{ student_console_password | default("student_console_password") }}
+        Web Console Credentials: {{ aws_user }} / {{ student_password }}
         {% endif %}
     - ""
     - "Visit the following pages to learn how to use the CLI and APIs:"
