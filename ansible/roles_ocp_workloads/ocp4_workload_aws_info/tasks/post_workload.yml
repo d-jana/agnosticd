@@ -4,8 +4,8 @@
   set_fact:
     aws_access_key_id = {{ hostvars.localhost.route53user_access_key }}
     aws_secret_access_key = {{ hostvars.localhost.route53user_secret_access_key }}
-    aws_user_id = {{ hostvars.localhost.ec2_facts.instances.network_interfaces.owner_id }}
-    aws_user = {{ hostvars.localhost.cloud_tags_final.owner }}
+    aws_user_id = {{ hostvars.localhost.ec2_facts.instances[0].network_interfaces.owner_id }}
+    aws_user = {{ hostvars.localhost.ec2_facts.instances[0].tags.owner }}
     student_password = {{ student_console_password | default("student_console_password") }}
 
 - name: Print AWS credentials
