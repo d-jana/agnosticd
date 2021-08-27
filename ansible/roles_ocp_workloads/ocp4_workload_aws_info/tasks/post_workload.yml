@@ -22,9 +22,7 @@
     - "Your AWS programmatic access:"
     - "AWS_ACCESS_KEY_ID: {{ aws_access_key_id }}"
     - "AWS_SECRET_ACCESS_KEY: {{ aws_secret_access_key }}"
-    - "Web Console Access: https://{{ sandbox_account_id }}.signin.aws.amazon.com/console"
-    - "Web Console Credentials: {{ hostvars.localhost.rosa_console_user_name }} / {{ hostvars.localhost.rosa_console_password }}"
-    - "** Plase be very careful to not expose AWS credentials in GIT repos or anywhere else that could be public! **"
+    - ""
     - ""
 
 # Leave this as the last task in the playbook.
